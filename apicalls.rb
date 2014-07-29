@@ -8,40 +8,47 @@ require 'pry'
 
 class Queryier
 
-  def initialize
-    @terms = ["'Flatiron School'", "'Hack Reactor'"]
+  attr_reader :terms
+
+  def initialize(term1, term2)
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key = TWEETAPPKEY
       config.consumer_secret = TWEETAPPSECRET
       config.access_token = TWEETTOKEN
       config.access_token_secret = TWEETTOKENSECRET
     end
+
+    @terms = [Term.new(term1, @client), Term.new(term2, @client)]
   end
 
   def compare
-    response1 = @client.search(@terms[0]).attrs[:statuses]
-    response2 = @client.search(@terms[1]).attrs[:statuses]
-    if popular_words?(terms)
+    if popular_words?
       winner = more_frequent
+      return winner.frequency
     else
-
+      winner = most_mentioned
+      loser  = terms.detect {|term| term != winner } 
+      return "#{winner.content.capitalize} has been mentioned #{winner.length} times in the past week!
+      But #{loser.content} has only been mentioned #{winner.length} times."
     end
   end
 
-  def popular_words?(terms)
+  def popular_words?
     terms.all? { |term| term.length == 100 }
   end
 
-  def more_frequent(terms)    
+  def more_frequent    
     terms.min_by do |term|
-      Time.parse(term.first[:current_time]) - 
-      Time.parse(term.last[:current_time])
+      Time.parse(term.response.first[:current_time]) - 
+      Time.parse(term.response.last[:current_time])
     end
   end
 
-  def 
-
+  def most_mentioned
+    terms.max_by { |term| term.length }
   end
+
+
 
 end
 
