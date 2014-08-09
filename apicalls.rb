@@ -11,7 +11,7 @@ require_relative './term'
 
 class Queryier
 
-  attr_reader :terms
+  attr_reader :terms, :winner, :loser
 
   def initialize(term1, term2)
     @client = Twitter::REST::Client.new do |config|
@@ -31,50 +31,30 @@ class Queryier
     # if both phrases are popular, get more granular in dermining, ie tweets per hundred secs
 
 
-
-
   def compare
-    if popular_words?
-      winner = more_frequent
-      return winner.frequency
+    if self.terms.all? { |t| t.results[:count] }
+      @winner, @loser = self.count_winner_loser
+    elsif self.terms.all? { |t| t.results[:seconds] }
+      @winner, @loser = terms.sort_by { |t| t.results[:seconds] }
     else
-      winner = most_mentioned
-      loser  = terms.detect {|term| term != winner } 
-      return "#{winner.frequency}"
+      @winner = terms.select { |t| t.results[:seconds]}[0]
+      @loser = terms.select { |t| t.results[:count]}[0]
     end
+    
+      binding.pry
   end
 
-  # a word tweeted 0 times will break everything.
-  def popular_words?
-
-  
-      terms.all? do |term|    
-        return false if term.no_tweets? 
-        (term.seconds_per_hundred_tweets < 1800 && term.length > 80) || term.length == 100 
-      end
-  end
-
-  def more_frequent    
-    terms.min_by do |term|
-      term.seconds_per_hundred_tweets
-    end
+  def count_winner_loser
+    terms.sort_by { |t| t.length }
   end
 
   def most_mentioned
     terms.max_by { |term| term.length }
   end
 
-
-
 end
 
-puts Queryier.new("patent", "adfhgoeooooooeoe").compare
-
-
-#If results of one of them is less than 100:
-# _ people tweeted about _ in the past week
-#If results of both is greater than 100:
-#200 people tweet the word fuck every second
+puts Queryier.new("potato", "mumford and sons").compare
 
 
 
