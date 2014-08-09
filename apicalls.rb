@@ -41,7 +41,7 @@ class Queryier
       @loser = terms.select { |t| t.results[:count]}[0]
     end
     
-      binding.pry
+     # binding.pry
   end
 
   def count_winner_loser
@@ -54,7 +54,10 @@ class Queryier
 
 end
 
-puts Queryier.new("potato", "mumford and sons").compare
-
+puts "please enter words"
+q = Queryier.new(gets.chomp, gets.chomp)
+q.compare
+puts "Winner: #{q.winner.content} at #{q.winner.stats}"
+puts "Loser: #{q.loser.content} at #{q.loser.stats}"
 
 

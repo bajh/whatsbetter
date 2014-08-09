@@ -22,14 +22,16 @@ class Term
   end
 
   def measure_by_week?
-    # (term.time_span < 1800 && term.length > 80) || term.length == 100 
-    # if response > 0 THEN seconds_per_hundred and see if > 1800
-    (self.length < 90 || unpopular_tweet?) ? true : false
+     if self.length > 0
+      return time_span > 8_640_000 ? true : false
+    end
+    return true
+    # (self.length < 7 || unpopular_tweet?) ? true : false
   end
 
   def unpopular_tweet?
     if self.length > 0
-      return time_span > 3599 ? true : false
+      return time_span > 8_640_000 ? true : false
     end
     return true
   end
@@ -43,16 +45,36 @@ class Term
   end
 
   def frequency
+    #seconds
     if time_span == 0
       return {num: 101, unit: :second} 
     elsif time_span < 100
-      ratio = 100.0 / time_span
+      ratio = self.length.to_f / time_span
       return {num: round_ratio(ratio), unit: :second}
     elsif time_span == 100
       return {num: 1, unit: :second}
-    elsif time_span < 
-      ratio = ( 100.0 / time_span) * 60
+
+    #minutes
+    elsif time_span < 6000
+      ratio = ( self.length.to_f / time_span) * 60
       return {num: round_ratio(ratio), unit: :minute}
+    elsif time_span == 6000
+      return {num: 1, unit: :minute}
+    
+    #hours
+    elsif time_span < 360_000
+      ratio = (( self.length.to_f / time_span) * 60) * 60
+      return {num: round_ratio(ratio), unit: :hour}
+    elsif time_span == 360_000
+      return {num: 1, unit: :hour}
+    
+
+    #days, NEVER HAPPENS THO
+    elsif time_span < 8_640_000
+      ratio = ((( self.length.to_f / time_span) * 60) * 60) * 24
+      return {num: round_ratio(ratio), unit: :day}
+    elsif time_span == 8_640_000
+      return {num: 1, unit: :day}
     end
 
   end
