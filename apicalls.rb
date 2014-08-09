@@ -5,6 +5,9 @@ TWEETTOKENSECRET = "i6gfbMymtyAiU1PeOK5A7UYx58ts5sExsON8SmsPADRGQ"
 
 require 'twitter'
 require 'pry'
+require 'time'
+
+require_relative './term'
 
 class Queryier
 
@@ -21,6 +24,15 @@ class Queryier
     @terms = [Term.new(term1, @client), Term.new(term2, @client)]
   end
 
+  # determine which is said more from 100 tweet sample
+  # display stats for the winner and the loser
+
+  # check if one phrase has more tweets, ie 18 vs 97, easy to determine winner
+    # if both phrases are popular, get more granular in dermining, ie tweets per hundred secs
+
+
+
+
   def compare
     if popular_words?
       winner = more_frequent
@@ -28,19 +40,23 @@ class Queryier
     else
       winner = most_mentioned
       loser  = terms.detect {|term| term != winner } 
-      return "#{winner.content.capitalize} has been mentioned #{winner.length} times in the past week!
-      But #{loser.content} has only been mentioned #{winner.length} times."
+      return "#{winner.frequency}"
     end
   end
 
+  # a word tweeted 0 times will break everything.
   def popular_words?
-    terms.all? { |term| term.length == 100 }
+
+  
+      terms.all? do |term|    
+        return false if term.no_tweets? 
+        (term.seconds_per_hundred_tweets < 1800 && term.length > 80) || term.length == 100 
+      end
   end
 
   def more_frequent    
     terms.min_by do |term|
-      Time.parse(term.response.first[:current_time]) - 
-      Time.parse(term.response.last[:current_time])
+      term.seconds_per_hundred_tweets
     end
   end
 
@@ -52,7 +68,7 @@ class Queryier
 
 end
 
-puts Queryier.new("fuck","shit").compare
+puts Queryier.new("patent", "adfhgoeooooooeoe").compare
 
 
 #If results of one of them is less than 100:
