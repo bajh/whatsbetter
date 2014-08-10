@@ -14,6 +14,10 @@ require_relative './term'
 # querier.winner.response.shuffle.first[:user][:screen_name]
 # querier.winner.response.shuffle.first[:text]
 
+# fix this error:
+# Winner: avi flombaum at {:num=>1, :unit=>:week}
+# Loser: adam enbar at {:num=>2, :unit=>:week}
+
 class Queryier
 
   attr_reader :terms, :winner, :loser
@@ -62,7 +66,7 @@ end
 puts "please enter words"
 q = Queryier.new(gets.chomp, gets.chomp)
 q.compare
-binding.pry
+# binding.pry
 puts "Winner: #{q.winner.content} at #{q.winner.stats}"
 puts "Loser: #{q.loser.content} at #{q.loser.stats}"
 
