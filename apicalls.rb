@@ -57,6 +57,7 @@ end
 puts "please enter words"
 q = Queryier.new(gets.chomp, gets.chomp)
 q.compare
+
 puts "Winner: #{q.winner.content} at #{q.winner.stats}"
 puts "Loser: #{q.loser.content} at #{q.loser.stats}"
 

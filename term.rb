@@ -14,7 +14,7 @@ class Term
   def results
     result = {}
     if measure_by_week?
-      result[:count] = self.length
+      result[:count] = self.length 
     else
       result[:seconds] = self.time_span
     end
@@ -22,11 +22,7 @@ class Term
   end
 
   def measure_by_week?
-     if self.length > 0
-      return time_span > 8_640_000 ? true : false
-    end
-    return true
-    # (self.length < 7 || unpopular_tweet?) ? true : false
+    (self.length < 90 || unpopular_tweet?) ? true : false
   end
 
   def unpopular_tweet?
@@ -38,9 +34,17 @@ class Term
 
   def stats
     if self.results[:count]
-      return {num: self.length, unit: :week}
+      return self.count_frequency
     else
       self.frequency
+    end
+  end
+
+  def count_frequency
+    if self.length < 7
+      return {num: self.length, unit: :week}
+    else
+      return {num: (round_ratio(self.length.to_f / 7)), unit: :day}
     end
   end
 
@@ -48,36 +52,36 @@ class Term
     #seconds
     if time_span == 0
       return {num: 101, unit: :second} 
-    elsif time_span < 100
-      ratio = self.length.to_f / time_span
+
+    elsif time_span <= 100
+      ratio = tweets_over_time
       return {num: round_ratio(ratio), unit: :second}
-    elsif time_span == 100
-      return {num: 1, unit: :second}
+  
 
     #minutes
-    elsif time_span < 6000
-      ratio = ( self.length.to_f / time_span) * 60
+    elsif time_span <= 6000
+      ratio = tweets_over_time(60)
       return {num: round_ratio(ratio), unit: :minute}
-    elsif time_span == 6000
-      return {num: 1, unit: :minute}
     
     #hours
-    elsif time_span < 360_000
-      ratio = (( self.length.to_f / time_span) * 60) * 60
+    elsif time_span <= 360000
+      ratio = tweets_over_time(3600)
       return {num: round_ratio(ratio), unit: :hour}
-    elsif time_span == 360_000
-      return {num: 1, unit: :hour}
+    
     
 
     #days, NEVER HAPPENS THO
-    elsif time_span < 8_640_000
-      ratio = ((( self.length.to_f / time_span) * 60) * 60) * 24
+    elsif time_span <= 8640000
+      ratio = tweets_over_time(86_400)
       return {num: round_ratio(ratio), unit: :day}
-    elsif time_span == 8_640_000
-      return {num: 1, unit: :day}
+    
     end
 
   end
+
+  def tweets_over_time(exponant = 1)
+    (self.length.to_f / time_span) * exponant   
+  end 
 
   def time_span
     Time.parse(self.response.first[:created_at]) - 
