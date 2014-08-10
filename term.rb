@@ -4,6 +4,7 @@ class Term
 
   def initialize(content, client)
     @content  = content  
+    # binding.pry
     @response = client.search(content).attrs[:statuses]
   end
 
@@ -18,26 +19,19 @@ class Term
     else
       result[:seconds] = self.time_span
     end
-    return result
+    result
   end
 
   def measure_by_week?
-    (self.length < 90 || unpopular_tweet?) ? true : false
+    self.length < 90 || unpopular_tweet?
   end
 
   def unpopular_tweet?
-    if self.length > 0
-      return time_span > 8_640_000 ? true : false
-    end
-    return true
+    self.length > 0 ? time_span > 8_640_000 : true
   end
 
   def stats
-    if self.results[:count]
-      return self.count_frequency
-    else
-      self.frequency
-    end
+    self.results[:count] ? self.count_frequency : self.frequency
   end
 
   def count_frequency
@@ -52,35 +46,29 @@ class Term
     #seconds
     if time_span == 0
       return {num: 101, unit: :second} 
-
-    elsif time_span <= 100
+    elsif time_span <= self.length.to_f
       ratio = tweets_over_time
       return {num: round_ratio(ratio), unit: :second}
   
-
     #minutes
-    elsif time_span <= 6000
+    elsif time_span <= 60 * self.length.to_f
       ratio = tweets_over_time(60)
       return {num: round_ratio(ratio), unit: :minute}
     
     #hours
-    elsif time_span <= 360000
+    elsif time_span <= 3600 * self.length.to_f
       ratio = tweets_over_time(3600)
       return {num: round_ratio(ratio), unit: :hour}
     
-    
-
-    #days, NEVER HAPPENS THO
-    elsif time_span <= 8640000
+    #days, ONLY > 90
+    elsif time_span <= 86_400 * self.length.to_f
       ratio = tweets_over_time(86_400)
       return {num: round_ratio(ratio), unit: :day}
-    
     end
-
   end
 
-  def tweets_over_time(exponant = 1)
-    (self.length.to_f / time_span) * exponant   
+  def tweets_over_time(seconds = 1)
+    (self.length.to_f / time_span) * seconds   
   end 
 
   def time_span
@@ -89,9 +77,14 @@ class Term
   end
 
   def round_ratio(ratio)
-    ratio = ratio == ratio.to_i ? ratio.to_i : ratio.round(2) 
+    ratio == ratio.to_i ? ratio.to_i : ratio.round(2) 
   end
 
-
+  def self.suggestions
+    ["Abraham Lincoln", "George Washington", "Space Jam", "#yolo", "Rabbits", "Dirty Laundry",
+     "Barack Obama", "Flatiron School", "Ruby", "Casablanca", "Citizen Cane", "The Beatles",
+     "The Rolling Stones", "Brad Pitt", "Cary Grant", "Science", "Religion", "War", "Peace", 
+     "Soccer", "Football", "Basketball", "Food", "Sleep", "Tired"]
+  end
 
 end
