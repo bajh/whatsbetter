@@ -9,15 +9,24 @@
     <link href="stylesheets/style.css" rel="stylesheet">
   </head>
   <body>
-    <div class="outer">
-    <div class="middle">
-    <div class="box-holder">
+    <div id="wrap">
+      <div id="main">
+      <div class="outer">
+        <div class="middle">
+          <div class="box-holder">
 
-    <%= yield %>
+          <%= yield %>
 
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
-    </div>
-    </div>
+  <footer class="footer">
+  <div class="container text-center">
+    <p>This site was made by <a href="https://github.com/jbarrieault">Jacob Barrieault</a>, <a href="https://github.com/mrmitchboyer">Mitch Boyer</a> and <a href="https://github.com/bajh">Brandon Hopkins</a> at <a href="http://flatironschool.com">The Flatiron School</a></p>
+  </div>
+  </footer>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="js/jquery-animations.js"></script>
     <script src="js/queryier.js"></script>

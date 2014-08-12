@@ -24,13 +24,15 @@ $( document ).ready(function() {
   var $vs = $('.vs'),
       $textBox = $('.text-box'),
       $resultsBtn = $('.results-btn'),
+      $againBtn = $('.again-btn'),
       $vsMobile = $('.input-spacer'),
-      $contentTitle = $('.content-title')
+      $contentTitle = $('.content-title');
 
   $contentTitle.hide();
   $vs.hide();
   $vsMobile.hide();
   $textBox.hide();
+  $againBtn.hide();
   $resultsBtn.hide();
 
   // intro animations
@@ -45,9 +47,19 @@ $( document ).ready(function() {
   function viewResults(){
     $term1.fadeOut();
     $term2.fadeOut(function(){
-        console.log();
+      $('.box-wrapper').animate({padding: '0'});
+      if ($(window).width() > 480) {
+        $('.btn-wrapper').animate({'marginTop': '+=145px'});
+        $('.footer').animate({'marginTop': '+=145px'});
+      }else{
+        $('.btn-wrapper').animate({'marginTop': '+=580px'});
+        $('.footer').animate({'marginTop': '+=580px'});
+      };
+      $resultsBtn.fadeOut(function(){
+          $againBtn.fadeIn();
+        });
       $textBox.animate({
-        height: "385px"
+        height: '385px'
       }, function(){
         appendDivs();
       });
