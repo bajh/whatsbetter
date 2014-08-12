@@ -278,7 +278,10 @@ input[type="submit"]:focus {
   }
 
   .footer {
+    position: relative;
+    margin-top: -65px; 
     height: 65px;
+    clear:both;
   }
 
 }
