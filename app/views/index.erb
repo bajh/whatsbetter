@@ -1,67 +1,71 @@
-<header>
-  <h1 class="text-center"><img src="images/whatsbetter.png" alt=""></h1>
-</header> 
 
-<form action="query-form" method="get" class="query-form">
+<div class="static-div">
+  <header>
+    <h1 class="text-center"><img src="images/whatsbetter.png" alt=""></h1>
+  </header> 
 
-  <div class="box-wrapper">
-    <div class="vs box-shadow"><p>vs</p></div>
-    <div class="text-box box-shadow text-center">
-      <input class="term1" name="term1" type="text" placeholder="<%= @samples.first %>">
+  <form action="query-form" method="get" class="query-form">
 
-      <!-- DISPLAY WINNER -->
-      <div class="content-title">
-        <h2></h2>
+    <div class="box-wrapper">
+      <div class="vs box-shadow"><p>vs</p></div>
+      <div class="text-box box-shadow text-center">
+        <input class="term1" name="term1" type="text" placeholder="<%= @samples.first %>">
 
-        <div class="tweeted-about">
-          <p>is tweeted about</p>
-        </div>
-
-        <div class="stats">
-          <div class="num">
-            <h3></h3>
-          </div>
-          <div class="times-per">
-            <p>TIMES PER</p>
-          </div>
-          <div class="unit">
-            <h4></h4>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div class="input-spacer text-center"></div>
-    <div class="text-box box-shadow text-center">
-      <input class="term2" name="term2" type="text" placeholder="<%= @samples.last %>">
-
-      <!-- DISPLAY LOSER -->
+        <!-- DISPLAY WINNER -->
         <div class="content-title">
-        <h2></h2>
+          <h2></h2>
 
-        <div class="tweeted-about">
-          <p>is tweeted about</p>
+          <div class="tweeted-about">
+            <p>is tweeted about</p>
+          </div>
+
+          <div class="stats">
+            <div class="num">
+              <h3></h3>
+            </div>
+            <div class="times-per">
+              <p>TIMES PER</p>
+            </div>
+            <div class="unit">
+              <h4></h4>
+            </div>
+          </div>
         </div>
 
-        <div class="stats">
-          <div class="num">
-            <h3></h3>
-          </div>
-          <div class="times-per">
-            <p>TIMES PER</p>
-          </div>
-          <div class="unit">
-            <h4></h4>
-          </div>
-        </div>
       </div>
+      <div class="input-spacer text-center"></div>
+      <div class="text-box box-shadow text-center">
+        <input class="term2" name="term2" type="text" placeholder="<%= @samples.last %>">
 
+        <!-- DISPLAY LOSER -->
+          <div class="content-title">
+          <h2></h2>
+
+          <div class="tweeted-about">
+            <p>is tweeted about</p>
+          </div>
+
+          <div class="stats">
+            <div class="num">
+              <h3></h3>
+            </div>
+            <div class="times-per">
+              <p>TIMES PER</p>
+            </div>
+            <div class="unit">
+              <h4></h4>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
 
-  <div class="btn-wrapper text-center">
-    <input class="results-btn" type="submit" value="get results"/>
-    <a href="/"><div class="again-btn">again!</div></a>
-  </div>
+    <div class="btn-wrapper text-center">
+      <input class="results-btn" type="submit" value="get results"/>
+      <a href="/"><div class="again-btn">again!</div></a>
+    </div>
 
-</form>
+  </form>
+</div>
+  
