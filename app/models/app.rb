@@ -14,6 +14,9 @@ require_relative './term'
 # querier.winner.response.shuffle.first[:user][:screen_name]
 # querier.winner.response.shuffle.first[:text]
 
+# q.winner.stats => {:num=>41.38, :unit=>:minute}
+# q.winner.content => "term"
+
 class Queryier
 
   attr_reader :terms, :winner, :loser
@@ -24,9 +27,14 @@ class Queryier
       config.consumer_secret = TWEETAPPSECRET
       config.access_token = TWEETTOKEN
       config.access_token_secret = TWEETTOKENSECRET
+      # config.consumer_key = ENV['TWEETAPPKEY']
+      # config.consumer_secret = ENV['TWEETAPPSECRET']
+      # config.access_token = ENV['TWEETTOKEN']
+      # config.access_token_secret = ENV['TWEETTOKENSECRET']
     end
 
     @terms = [Term.new(term1, @client), Term.new(term2, @client)]
+    self.compare
   end
 
   # determine which is said more from 100 tweet sample
@@ -55,14 +63,26 @@ class Queryier
     terms.max_by(&:length)
   end
 
+  def random_winner_tweet
+    random_tweet = self.winner.response.sample
+    if random_tweet[:user][:lang] == "en" || !(random_tweet[:text].include?(self.winner.content))
+      return {screen_name: "@#{random_tweet[:user][:screen_name]}", text: random_tweet[:text]}
+    else
+      self.random_winner_tweet
+    end
+  end
+
 end
 
-puts "please enter words"
-q = Queryier.new(gets.chomp, gets.chomp)
-q.compare
-# binding.pry
-puts "Winner: #{q.winner.content} at #{q.winner.stats}"
-puts "Loser: #{q.loser.content} at #{q.loser.stats}"
-puts "Suggestions for next time: #{Term.suggestions.shuffle[0,2]}"
+# puts "please enter words"
+# q = Queryier.new(gets.chomp, gets.chomp)
+# q.compare
+# puts "Winner: #{q.winner.content} at #{q.winner.stats}"
+# puts "Loser: #{q.loser.content} at #{q.loser.stats}"
+# puts "Suggestions for next time: #{Term.suggestions.shuffle[0,2]}"
+
+
+
+
 
 

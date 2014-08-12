@@ -1,0 +1,66 @@
+<header>
+  <h1 class="text-center"><img src="images/whatsbetter.png" alt=""></h1>
+</header> 
+
+<form action="query-form" method="get" class="query-form">
+
+  <div class="box-wrapper">
+    <div class="vs box-shadow"><p>vs</p></div>
+    <div class="text-box box-shadow text-center">
+      <input class="term1" name="term1" type="text" placeholder="<%= @samples.first %>">
+
+      <!-- DISPLAY WINNER -->
+      <div class="content-title">
+        <h2>George Washington</h2>
+
+        <div class="tweeted-about">
+          <p>is tweeted about</p>
+        </div>
+
+        <div class="stats">
+          <div class="num">
+            <h3>2.32</h3>
+          </div>
+          <div class="times-per">
+            <p>TIMES PER</p>
+          </div>
+          <div class="unit">
+            <h4>Minute</h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="input-spacer text-center"></div>
+    <div class="text-box box-shadow text-center">
+      <input class="term2" name="term2" type="text" placeholder="<%= @samples.last %>">
+
+      <!-- DISPLAY LOSER -->
+        <div class="content-title">
+        <h2>George Washington</h2>
+
+        <div class="tweeted-about">
+          <p>is tweeted about</p>
+        </div>
+
+        <div class="stats">
+          <div class="num">
+            <h3>2.32</h3>
+          </div>
+          <div class="times-per">
+            <p>TIMES PER</p>
+          </div>
+          <div class="unit">
+            <h4>Minute</h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="btn-wrapper text-center">
+    <input class="results-btn" type="submit" value="get results">
+  </div>
+
+</form>

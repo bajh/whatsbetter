@@ -1,0 +1,265 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+
+html { 
+  min-height: 100%;
+}
+
+body {
+  background: rgb(226,231,235);
+  font-family: "Bree Serif", serif;
+  color: rgb(44, 62, 80);
+  height: 100%;
+  min-height: 100%  
+  margin-bottom: 60px;
+}
+
+h1 {
+  font-family: "Pacifico", script;
+  font-size: 120px;
+}
+
+h1 img {
+  width: 100%;
+}
+
+header {
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 45px;
+  padding-top: 15px;
+}
+
+#footer a {
+  color: #666666;
+}
+
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.box-holder {
+  width: 900px;
+  margin: 0 auto;
+  height: 700px;
+}
+
+.box-wrapper, .box-wrapper-lrg {
+  margin: 0 auto; 
+  height: 200px;
+  padding: 50px 0;
+}
+
+.box-wrapper-lrg {
+  padding: 0;
+  height: 500px;
+}
+
+.box-shadow {
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
+}
+
+.text-box, .text-box-lrg {
+  margin: 10px 30px;
+  width: 360px;
+  height: 100px;
+  display: inline-block;
+  background-color: rgb(44, 62, 80);
+  position: relative;
+  top: -150px;  
+}
+
+.text-box-lrg {
+  height: 400px;
+}
+
+.content-title h2 {
+  color: rgb(255, 255, 255);
+}
+
+.content-title {
+  color: rgb(255, 255, 255);
+}
+
+.tweeted-about p {
+  color: rgba(255, 255, 255, 0.6) !important;
+  font-size: 18px !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;  
+}
+
+.num h3 {
+  margin: 8px 0 0;
+  font-size: 96px;
+}
+
+.times-per p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 26px !important;
+}
+
+.unit h4 {
+  margin: 0;
+  font-size: 48px;
+}
+
+.stats {
+  width: 80%;
+  margin: 25px auto 0;
+  height: 235px;
+}
+
+.stats-winner {
+  border: 7px solid rgb(16,194,58);
+  background: rgba(16,194,58,0.7);
+}
+
+.stats-loser {
+  border: 7px solid rgb(192, 57, 43);
+  background: rgba(192, 57, 43, 0.7);
+}
+
+
+.text-box input {
+  border: none;
+  height: 40px;
+  width: 280px;
+  margin: 30px;
+  margin-left:40px;
+  font-size: 24px;
+  padding: 5px;
+  text-align: center;
+  -webkit-box-shadow: inset 2px 2px 5px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: inset 2px 2px 5px 0px rgba(0,0,0,0.2);
+  box-shadow: inset 2px 2px 5px 0px rgba(0,0,0,0.2);
+}
+
+input::selection {
+  background: rgba(192, 57, 43, 0.9);
+  color: white;
+}
+
+.input-spacer {
+  display: inline-block;
+  width: 50px;
+}
+
+/*override boostrap*/
+
+input[type="text"]:focus,
+input[type="submit"]:focus {
+  outline: 0;
+}
+
+.vs {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+  background-color: rgb(192, 57, 43);
+  color: white;
+  text-align: center;
+  position: relative;
+  z-index: 100;
+  top:-13px;
+  left: 370px;
+}
+
+.vs p { 
+  font-size: 92px;
+  vertical-align:middle;
+  text-align:center;
+  position: relative;
+  left: -2px;
+  top: -2px;
+}
+
+.btn-wrapper {
+  margin-top: 110px;
+}
+
+.results-btn, .again-btn {
+  border: 4px solid rgb(44, 62, 80);  
+  border-radius: 5px;
+  background: none;
+  font-size: 28px;
+  padding: 7px 20px;
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  -ms-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+}
+
+.results-btn:hover {
+  color: rgb(226,231,235);
+  background: rgb(44, 62, 80);
+}
+
+/* RESPONSIVE DESIGN */
+
+/* PHONE */
+
+@media screen and (max-width:480px) {
+  body {
+    margin-bottom: 100px;
+  }
+
+  .box-holder {
+    width: 100%;
+    height: 650px;
+    /*background: green;*/
+  }
+
+  .box-wrapper {
+    padding: 0;
+  }
+
+  .text-box, .text-box-lrg {
+    width: 100%;
+    margin: 0;
+    position: static;
+  }
+
+  .text-box input {
+    width: 80%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .vs, .vs p {
+    display: none !important;
+  }
+
+  .input-spacer {
+    width: 100%;
+    padding: 5px;
+    background: rgb(192, 57, 43);
+  }
+  .input-spacer:before {
+    content: "VS";
+    font-size: 50px;
+    text-align: center;
+    color: white;
+  }
+
+  #footer {
+    position: fixed;
+    height: 65px;
+    opacity: 0.2;
+  }
+
+}

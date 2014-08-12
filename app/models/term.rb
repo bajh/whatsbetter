@@ -68,7 +68,7 @@ class Term
   end
 
   def tweets_over_time(seconds = 1)
-    (self.length.to_f / time_span) * seconds   
+    (self.length.to_f / time_span) * seconds
   end 
 
   def time_span
@@ -81,10 +81,7 @@ class Term
   end
 
   def self.suggestions
-    ["Abraham Lincoln", "George Washington", "Space Jam", "#yolo", "Rabbits", "Dirty Laundry",
-     "Barack Obama", "Flatiron School", "Ruby", "Casablanca", "Citizen Cane", "The Beatles",
-     "The Rolling Stones", "Brad Pitt", "Cary Grant", "Science", "Religion", "War", "Peace", 
-     "Soccer", "Football", "Basketball", "Food", "Sleep", "Tired"]
+    ["Abraham Lincoln", "George Washington", "Space Jam", "#yolo", "Rabbits", "Dirty Laundry", "Barack Obama", "Flatiron School", "Ruby", "Casablanca", "Citizen Kane", "The Beatles", "The Rolling Stones", "Brad Pitt", "Cary Grant", "Science", "Religion", "War", "Peace", "Soccer", "Football", "Basketball", "Food", "Sleep", "Tired", "Mosquito", "Aladdin", "Martin Luther King Jr.", "Martin Luther", "Jessica Simpson", "Python", "Justin Bieber", "Michael Jackson", "Tofu Dogs", "Vegans", "Omnivores", "T-Rex", "Pogs", "Stamps", "New York", "Utah", "Nature", "Bill Nye", "Neil DeGrasse Tyson", "Seinfeld", "Friends", "Lion King", "Breaking Bad", "Captain Planet"]
   end
 
 end
