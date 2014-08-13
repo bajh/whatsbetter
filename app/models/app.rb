@@ -1,8 +1,3 @@
-TWEETAPPKEY = "hGuIGM9vFCTtVm4DmPCX9RF3E"
-TWEETAPPSECRET = "jxFAyFQNYLW24jmKFO1YkgpBW8XwzH4337XymUEGtf7zxZYiFb"
-TWEETTOKEN = "2604285230-AV99szaeXcEkDxtmpTExERHGmwNmq3DmWraPqF5"
-TWEETTOKENSECRET = "i6gfbMymtyAiU1PeOK5A7UYx58ts5sExsON8SmsPADRGQ"
-
 require 'twitter'
 require 'pry'
 require 'time'
@@ -23,14 +18,10 @@ class Queryier
 
   def initialize(term1, term2)
     @client = Twitter::REST::Client.new do |config|
-      config.consumer_key = TWEETAPPKEY
-      config.consumer_secret = TWEETAPPSECRET
-      config.access_token = TWEETTOKEN
-      config.access_token_secret = TWEETTOKENSECRET
-      # config.consumer_key = ENV['TWEETAPPKEY']
-      # config.consumer_secret = ENV['TWEETAPPSECRET']
-      # config.access_token = ENV['TWEETTOKEN']
-      # config.access_token_secret = ENV['TWEETTOKENSECRET']
+      config.consumer_key = ENV['TWEETAPPKEY']
+      config.consumer_secret = ENV['TWEETAPPSECRET']
+      config.access_token = ENV['TWEETTOKEN']
+      config.access_token_secret = ENV['TWEETTOKENSECRET']
     end
 
     @terms = [Term.new(term1, @client), Term.new(term2, @client)]

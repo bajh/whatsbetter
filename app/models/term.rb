@@ -27,7 +27,10 @@ class Term
   end
 
   def unpopular_tweet?
-    self.length > 0 ? time_span > 8_640_000 : true
+    if self.length > 0
+      return time_span > 86400 * self.length.to_f
+    end
+    return true
   end
 
   def stats
