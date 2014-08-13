@@ -9,16 +9,29 @@ $( document ).ready(function() {
   });
 
   // AJAX STUFF
-  var $term1 = $('.term1'),
-      $term2 = $('.term2');
+  // var $term1 = $('.term1'),
+  //     $term2 = $('.term2');
 
 
   $('.query-form').submit(function(e){
     e.preventDefault();
+ 
+    if ($('.term1').val() == ''){
+      var $term1 = $('.term1').attr('placeholder'),
+    } else {
+      var $term1 = $('.term1').val(),
+    }
+
+    if ($('.term2').val() == ''){
+      var $term2 = $('.term2').attr('placeholder'),
+    } else {
+      var $term2 = $('.term2').val(),
+    }
+
     $.ajax({
       type: "GET",
       url: "/query",
-      data: {term1: $term1.val(), term2: $term2.val()},
+      data: {term1: $term1, term2: $term2},
       success: function(response){
         viewResults(response);
         fillContent(response);
