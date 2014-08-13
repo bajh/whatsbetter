@@ -5,6 +5,8 @@ $( document ).ready(function() {
     var againStyle = $('.again-btn').attr('style');
     if (againStyle != "display: none;" && e.which == 13 ){
       $('.again-btn').click();
+    } else if (e.which == 13 ){
+      $('.results-btn').click();
     }
   });
 
