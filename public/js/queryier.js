@@ -3,7 +3,7 @@ $( document ).ready(function() {
   var $term1 = $('.term1'),
       $term2 = $('.term2');
 
-  $term1.focus();
+ 
 
   $(window).keydown(function(e){
     var againStyle = $('.again-btn').attr('style');
@@ -102,5 +102,7 @@ $( document ).ready(function() {
   function appendDivs(){
     $contentTitle.fadeIn();
   }
+
+  $term1.focus();
 
 });
