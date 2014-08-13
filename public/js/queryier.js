@@ -1,4 +1,11 @@
 $( document ).ready(function() {
+ 
+  $(window).keydown(function(e){
+    var againStyle = $('.again-btn').attr('style');
+    if (againStyle != "display: none;" && e.which == 13 ){
+      $('.again-btn').click();
+    }
+  });
 
   // AJAX STUFF
 
