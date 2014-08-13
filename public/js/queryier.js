@@ -9,8 +9,8 @@ $( document ).ready(function() {
   });
 
   // AJAX STUFF
-  // var $term1 = $('.term1'),
-  //     $term2 = $('.term2');
+  var $term1 = $('.term1'),
+      $term2 = $('.term2');
 
 
   $('.query-form').submit(function(e){
