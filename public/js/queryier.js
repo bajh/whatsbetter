@@ -17,15 +17,15 @@ $( document ).ready(function() {
     e.preventDefault();
  
     if ($('.term1').val() == ''){
-      var $term1 = $('.term1').attr('placeholder'),
+      var $term1 = $('.term1').attr('placeholder');
     } else {
-      var $term1 = $('.term1').val(),
+      var $term1 = $('.term1').val();
     }
 
     if ($('.term2').val() == ''){
-      var $term2 = $('.term2').attr('placeholder'),
+      var $term2 = $('.term2').attr('placeholder');
     } else {
-      var $term2 = $('.term2').val(),
+      var $term2 = $('.term2').val();
     }
 
     $.ajax({
