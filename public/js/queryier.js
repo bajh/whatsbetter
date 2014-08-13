@@ -1,10 +1,6 @@
 $( document ).ready(function() {
   
-  var $term1 = $('.term1'),
-      $term2 = $('.term2');
-
  
-
   $(window).keydown(function(e){
     var againStyle = $('.again-btn').attr('style');
     if (againStyle != "display: none;" && e.which == 13 ){
@@ -13,6 +9,9 @@ $( document ).ready(function() {
   });
 
   // AJAX STUFF
+  var $term1 = $('.term1'),
+      $term2 = $('.term2');
+
 
   $('.query-form').submit(function(e){
     e.preventDefault();
@@ -102,7 +101,5 @@ $( document ).ready(function() {
   function appendDivs(){
     $contentTitle.fadeIn();
   }
-
-  $term1.focus();
 
 });
