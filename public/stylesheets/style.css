@@ -236,6 +236,57 @@ input[type="submit"]:focus {
   opacity: 0.9;
 }
 
+/* MODAL */
+
+.modal-dialog {
+  background: rgb(226,231,235);
+  border-radius: 5px;
+  padding: 25px 50px 100px;
+}
+
+.modal-header {
+  margin-bottom: 20px;
+}
+
+.maker-holder {
+  display: inline-block;
+}
+
+.modal-dialog a{
+  text-decoration: none !important;
+}
+
+.modal-dialog a:hover {
+  text-decoration: none !important;
+}
+
+.maker-img {
+  width: 160px;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 5px;
+  margin: 15px 0 0 0;
+}
+
+.maker-img span {
+}
+
+.maker-img img {
+  width: 160px;
+  height: 160px;
+  -webkit-transition: 0.5s ease-out;
+  -moz-transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
+}
+
+.maker-img:hover img {
+  width: 200px;
+  height: 200px;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+
 /* RESPONSIVE DESIGN */
 
 /* PHONE */
