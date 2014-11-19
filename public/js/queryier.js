@@ -1,6 +1,5 @@
 $( document ).ready(function() {
-  
- 
+
   $(window).keydown(function(e){
     var againStyle = $('.again-btn').attr('style');
     if (againStyle != "display: none;" && e.which == 13 ){
@@ -13,7 +12,6 @@ $( document ).ready(function() {
   // AJAX STUFF
   var $term1 = $('.term1'),
       $term2 = $('.term2');
-
 
   $('.query-form').submit(function(e){
     e.preventDefault();
@@ -47,6 +45,7 @@ $( document ).ready(function() {
   var $vs = $('.vs'),
       $textBox = $('.text-box'),
       $resultsBtn = $('.results-btn'),
+      $aboutLink = $('.about-link')
       $againBtn = $('.again-btn'),
       $vsMobile = $('.input-spacer'),
       $contentTitle = $('.content-title');
@@ -57,6 +56,7 @@ $( document ).ready(function() {
   $textBox.hide();
   $againBtn.hide();
   $resultsBtn.hide();
+  $aboutLink.hide();
 
   // intro animations
   $vs.fadeIn("slow", function(){
@@ -64,6 +64,7 @@ $( document ).ready(function() {
     $textBox.first().slideDown("slow"); 
     $textBox.last().slideDown("slow", function(){
       $resultsBtn.fadeIn(300);
+      $aboutLink.fadeIn(300);
     });
   });
 

@@ -225,6 +225,17 @@ input[type="submit"]:focus {
   background: rgb(44, 62, 80);
 }
 
+.about-link {
+  line-height: 50px;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.about-link:hover {
+  color: rgb(44, 62, 80) !important;
+  opacity: 0.9;
+}
+
 /* RESPONSIVE DESIGN */
 
 /* PHONE */
